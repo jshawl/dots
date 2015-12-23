@@ -1,4 +1,4 @@
-dots(4);
+dots(3);
 
 function dots(num, turnColors){
   var turn = 0;
@@ -24,13 +24,13 @@ function dots(num, turnColors){
       }
       square.appendChild(line);
     }
-    if( i % num === 0)
+    if(i % num === 0)
       square.classList.add("cb");
     dotsEl.appendChild(square); 
   } 
   function onLineClick(event){
     setActive(event.target);
-    toggleTurn()
+    toggleTurn();
   }
   function toggleTurn(){
     turn = turn == 0 ? 1 : 0; 
@@ -43,6 +43,7 @@ function dots(num, turnColors){
     if(square.querySelectorAll(".active").length == 4){
       square.classList.add("active")
       square.setAttribute("data-turn", turn)
+      toggleTurn();
     }
   }
   function onRightLineClick(event){
