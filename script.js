@@ -31,15 +31,14 @@ function dots(num, turnColors){
     el.classList.add("active");
   }
   function onRightLineClick(event){
-    onLineClick(event);
+    setActive(event.target);
     var line = this.parentNode.nextSibling.querySelector(".line:nth-child(2)");
     setActive(line);
   }
   function onBottomLineClick(event){ 
+    setActive(event.target);
     var index = num + 1 + parseInt(event.target.parentNode.getAttribute("data-square"));
     var sibling = document.querySelector("[data-square]:nth-of-type("+index+")");
-    sibling.querySelector(".line:nth-child(1)").classList.add("active");
-    setActive(event.target);
-    onLineClick(event);
+    setActive(sibling.querySelector(".line:nth-child(1)"));
   }
 }
