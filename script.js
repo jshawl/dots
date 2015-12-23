@@ -25,18 +25,21 @@ function dots(num, turnColors){
     dotsEl.appendChild(square); 
   } 
   function onLineClick(event){
-    setActive(event.target)
+    setActive(event.target);
   }
   function setActive(el){
     el.classList.add("active");
+    var square = el.parentNode;
+    if(square.querySelectorAll(".active").length == 4)
+      square.classList.add("active")
   }
   function onRightLineClick(event){
-    setActive(event.target);
+    onLineClick(event);
     var line = this.parentNode.nextSibling.querySelector(".line:nth-child(2)");
     setActive(line);
   }
   function onBottomLineClick(event){ 
-    setActive(event.target);
+    onLineClick(event);
     var index = num + 1 + parseInt(event.target.parentNode.getAttribute("data-square"));
     var sibling = document.querySelector("[data-square]:nth-of-type("+index+")");
     setActive(sibling.querySelector(".line:nth-child(1)"));
