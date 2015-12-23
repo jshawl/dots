@@ -41,27 +41,23 @@ body{
   cursor: pointer;
 }
 
-$c1: purple;
-$c2: gold;
-
-
 [data-turn='0'].active, 
 [data-turn='0'].active:hover, 
 [data-turn='0'] .line:hover{
-  background:$c1;
+  background:purple;
 }
 [data-turn='1'].active,
 [data-turn='1'] .line:hover,
 [data-turn='1'].active:hover{
-  background:$c2;
+  background:gold;
 }
 
 [data-turn='0'].active:hover{
-  background:$c1;
+  background:purple;
 }
 
 [data-turn='1'].active:hover{
-  background:$c2;
+  background:gold;
 }
 
 .dots .square{
