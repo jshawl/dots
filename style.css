@@ -41,23 +41,8 @@ body{
   cursor: pointer;
 }
 
-[data-turn='0'].active, 
-[data-turn='0'].active:hover, 
-[data-turn='0'] .line:hover{
+.dots .active, .dots .line:hover{
   background:purple;
-}
-[data-turn='1'].active,
-[data-turn='1'] .line:hover,
-[data-turn='1'].active:hover{
-  background:gold;
-}
-
-[data-turn='0'].active:hover{
-  background:purple;
-}
-
-[data-turn='1'].active:hover{
-  background:gold;
 }
 
 .dots .square{
