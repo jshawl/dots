@@ -1,0 +1,73 @@
+
+body{
+  padding:2em;
+}
+.dots .square{
+  width:50px;
+  height:50px;
+  padding:2px;
+  position:relative; 
+  float: left;
+  margin:10px;
+}
+
+.dots .line{
+  height:3px;
+  background:#efefef;
+  position:absolute;
+  width:100%;
+  top:0;
+  left:0;
+  transform-origin: 0 0;
+  transition: background .2s ease;
+  border-color: #fff;
+  border-width: 4px;
+  border-style:solid;
+}
+
+.dots .line:nth-of-type(2){
+  transform: rotate(90deg) translate(7px, -7px);
+}
+
+.dots .line:nth-of-type(3){
+  transform-origin: 100% 100%;
+  transform: rotate(-90deg) translate(7px, 0px);
+}
+.dots .line:nth-of-type(4){
+  top:100%;
+}
+
+.line:hover,.line.active{
+  cursor: pointer;
+}
+
+$c1: purple;
+$c2: gold;
+
+
+[data-turn='0'].active, 
+[data-turn='0'].active:hover, 
+[data-turn='0'] .line:hover{
+  background:$c1;
+}
+[data-turn='1'].active,
+[data-turn='1'] .line:hover,
+[data-turn='1'].active:hover{
+  background:$c2;
+}
+
+[data-turn='0'].active:hover{
+  background:$c1;
+}
+
+[data-turn='1'].active:hover{
+  background:$c2;
+}
+
+.dots .square{
+  perpective: 800px;
+}
+
+.cb{
+  clear:both;
+}
