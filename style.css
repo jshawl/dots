@@ -41,12 +41,16 @@ body{
   cursor: pointer;
 }
 
-.dots .active, .dots .line:hover{
-  background:purple;
+[data-turn="0"] .line:hover,
+.dots .line.active[data-turn="0"],
+.dots .square.active[data-turn="0"]{
+  background: purple;
 }
 
-.dots .square{
-  perpective: 800px;
+[data-turn="1"] .line:hover,
+.dots .line.active[data-turn="1"],
+.dots .square.active[data-turn="1"]{
+  background: gold;
 }
 
 .cb{

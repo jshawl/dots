@@ -26,12 +26,20 @@ function dots(num, turnColors){
   } 
   function onLineClick(event){
     setActive(event.target);
+    toggleTurn();
+  }
+  function toggleTurn(){
+    turn = turn == 0 ? 1 : 0; 
+    dotsEl.setAttribute("data-turn", turn);
   }
   function setActive(el){
     el.classList.add("active");
+    el.setAttribute("data-turn", turn);
     var square = el.parentNode;
-    if(square.querySelectorAll(".active").length == 4)
+    if(square.querySelectorAll(".active").length == 4){
       square.classList.add("active")
+      square.setAttribute("data-turn", turn)
+    }
   }
   function onRightLineClick(event){
     onLineClick(event);
