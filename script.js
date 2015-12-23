@@ -26,7 +26,7 @@ function dots(num, turnColors){
   } 
   function onLineClick(event){
     setActive(event.target);
-    toggleTurn();
+    toggleTurn()
   }
   function toggleTurn(){
     turn = turn == 0 ? 1 : 0; 
@@ -42,14 +42,14 @@ function dots(num, turnColors){
     }
   }
   function onRightLineClick(event){
-    onLineClick(event);
     var line = this.parentNode.nextSibling.querySelector(".line:nth-child(2)");
     setActive(line);
+    onLineClick(event);
   }
   function onBottomLineClick(event){ 
-    onLineClick(event);
     var index = num + 1 + parseInt(event.target.parentNode.getAttribute("data-square"));
     var sibling = document.querySelector("[data-square]:nth-of-type("+index+")");
     setActive(sibling.querySelector(".line:nth-child(1)"));
+    onLineClick(event);
   }
 }
