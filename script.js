@@ -1,4 +1,4 @@
-dots(2);
+dots(4);
 
 function dots(num, turnColors){
   var turn = 0;
@@ -11,10 +11,14 @@ function dots(num, turnColors){
     for(var j = 0; j < 4; j++){
       var line = document.createElement("div");
       line.classList.add("line");
-      if(j === 2 && !((i + 1) % (num ) === 0) ){
+      if(j === 1 && i % num !== 0){
+	line.addEventListener("click", onLeftLineClick);
+      } else if(j === 2 && !((i + 1) % num === 0) ){
          line.addEventListener("click", onRightLineClick); 
       } else if(j === 3 && i < (num * num) - num ){ 
          line.addEventListener("click", onBottomLineClick); 
+      } else if(j === 0 && i + 1 > num){ 
+         line.addEventListener("click", onTopLineClick); 
       } else { 
          line.addEventListener("click", onLineClick);
       }
@@ -44,6 +48,17 @@ function dots(num, turnColors){
   function onRightLineClick(event){
     var line = this.parentNode.nextSibling.querySelector(".line:nth-child(2)");
     setActive(line);
+    onLineClick(event);
+  }
+  function onLeftLineClick(event){
+    var line = this.parentNode.previousSibling.querySelector(".line:nth-child(3)");
+    setActive(line);
+    onLineClick(event);
+  }
+  function onTopLineClick(event){ 
+    var index = parseInt(event.target.parentNode.getAttribute("data-square")) - num;
+    var sibling = document.querySelector("[data-square]:nth-of-type("+ ++index+")");
+    setActive(sibling.querySelector(".line:nth-child(4)"));
     onLineClick(event);
   }
   function onBottomLineClick(event){ 
