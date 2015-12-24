@@ -20,7 +20,9 @@ function dots(num, turnColors){
       } else if(j === 0 && i + 1 > num){ 
          line.addEventListener("click", onTopLineClick); 
       } else { 
-         line.addEventListener("click", onLineClick);
+         line.addEventListener("click", function(event){
+	   onLineClick(event.target);
+	 });
       }
       square.appendChild(line);
     }
@@ -28,44 +30,52 @@ function dots(num, turnColors){
       square.classList.add("cb");
     dotsEl.appendChild(square); 
   } 
-  function onLineClick(event){
-    setActive(event.target);
-    toggleTurn();
-  }
-  function toggleTurn(){
-    turn = turn == 0 ? 1 : 0; 
-    dotsEl.setAttribute("data-turn", turn);
-  }
   function setActive(el){
     el.classList.add("active");
     el.setAttribute("data-turn", turn);
-    var square = el.parentNode;
+  }
+  function onLineClick(target){
+    setActive(target);
+  }
+  function toggleTurn(el1, el2){
+    var square = el1.parentNode;
     if(square.querySelectorAll(".active").length == 4){
       square.classList.add("active")
       square.setAttribute("data-turn", turn)
-      toggleTurn();
-    }
+      return
+    } 
+    square = el2.parentNode;
+    if(square.querySelectorAll(".active").length == 4){
+      square.classList.add("active")
+      square.setAttribute("data-turn", turn)
+      return
+    } 
+    turn = turn == 0 ? 1 : 0; 
+    dotsEl.setAttribute("data-turn", turn);
+  }
+  function placeHolder(el1, el2){
+    onLineClick(el1)
+    onLineClick(el2) 
+    toggleTurn(el1, el2);
   }
   function onRightLineClick(event){
     var line = this.parentNode.nextSibling.querySelector(".line:nth-child(2)");
-    setActive(line);
-    onLineClick(event);
+    placeHolder(event.target, line)
   }
   function onLeftLineClick(event){
     var line = this.parentNode.previousSibling.querySelector(".line:nth-child(3)");
-    setActive(line);
-    onLineClick(event);
+    placeHolder(event.target, line)
   }
   function onTopLineClick(event){ 
     var index = parseInt(event.target.parentNode.getAttribute("data-square")) - num;
     var sibling = document.querySelector("[data-square]:nth-of-type("+ ++index+")");
-    setActive(sibling.querySelector(".line:nth-child(4)"));
-    onLineClick(event);
+    var line = sibling.querySelector(".line:nth-child(4)");
+    placeHolder(event.target, line)
   }
   function onBottomLineClick(event){ 
     var index = num + 1 + parseInt(event.target.parentNode.getAttribute("data-square"));
     var sibling = document.querySelector("[data-square]:nth-of-type("+index+")");
-    setActive(sibling.querySelector(".line:nth-child(1)"));
-    onLineClick(event);
+    var line = sibling.querySelector(".line:nth-child(1)");
+    placeHolder(event.target, line)
   }
 }
