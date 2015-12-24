@@ -41,16 +41,21 @@ function dots(num, turnColors){
   }
   function onLineClick(target){
     setActive(target);
-    //toggleTurn(target, target)
+    toggleTurn(target, target)
   }
   function toggleTurn(el1, el2){
-    turn = turn == 0 ? 1 : 0; 
+    var el1actives = el1.parentNode.querySelectorAll(".active").length;
+    var el2actives = el2.parentNode.querySelectorAll(".active").length;
+    if(!(el1actives == 4 || el2actives == 4)){
+      console.log("change turn");
+      turn = turn == 0 ? 1 : 0; 
+    }
     dotsEl.setAttribute("data-turn", turn);
   }
   function placeHolder(el1, el2){
     setActive(el1)
     setActive(el2)
-    //toggleTurn(el1, el2);
+    toggleTurn(el1, el2);
   }
   function onRightLineClick(event){
     var line = this.parentNode.nextSibling.querySelector(".line:nth-child(2)");
