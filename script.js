@@ -32,31 +32,25 @@ function dots(num, turnColors){
   } 
   function setActive(el){
     el.classList.add("active");
+    var square = el.parentNode;
+    if(square.querySelectorAll(".active").length == 4){
+      square.classList.add("active")
+      square.setAttribute("data-turn", turn)
+    } 
     el.setAttribute("data-turn", turn);
   }
   function onLineClick(target){
     setActive(target);
+    //toggleTurn(target, target)
   }
   function toggleTurn(el1, el2){
-    var square = el1.parentNode;
-    if(square.querySelectorAll(".active").length == 4){
-      square.classList.add("active")
-      square.setAttribute("data-turn", turn)
-      return
-    } 
-    square = el2.parentNode;
-    if(square.querySelectorAll(".active").length == 4){
-      square.classList.add("active")
-      square.setAttribute("data-turn", turn)
-      return
-    } 
     turn = turn == 0 ? 1 : 0; 
     dotsEl.setAttribute("data-turn", turn);
   }
   function placeHolder(el1, el2){
-    onLineClick(el1)
-    onLineClick(el2) 
-    toggleTurn(el1, el2);
+    setActive(el1)
+    setActive(el2)
+    //toggleTurn(el1, el2);
   }
   function onRightLineClick(event){
     var line = this.parentNode.nextSibling.querySelector(".line:nth-child(2)");
