@@ -1,4 +1,4 @@
-dots(3);
+dots(6);
 
 function dots(num, turnColors){
   var turn = 0;
